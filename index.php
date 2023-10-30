@@ -13,16 +13,11 @@ $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     if (stripos($_SERVER['REQUEST_URI'],"showarticle")){
         $r->addRoute('GET', $_SERVER['REQUEST_URI'], ["App\Controllers\ArticleController","show"]);
     }
-
-
-
 });
 
-// Fetch method and URI from somewhere
 $httpMethod = $_SERVER['REQUEST_METHOD'];
 $uri = $_SERVER['REQUEST_URI'];
 
-// Strip query string (?foo=bar) and decode URI
 if (false !== $pos = strpos($uri, '?')) {
     $uri = substr($uri, 0, $pos);
 }
@@ -61,8 +56,7 @@ switch ($routeInfo[0]) {
              }
          }
      }
-
-        if($response->getViewName()==="Articles.show"){
+     if($response->getViewName()==="Articles.show"){
             echo '<a href="/un/articles"><-back</a>';
             echo "<br>"."<br>";
                 echo ($response->getData()[0]->getTitle());

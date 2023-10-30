@@ -14,7 +14,11 @@ class ArticleController
        $rickAndMorty= new RickAndMorty();
                return new Response("Articles.index", [
             "articles" => [
-                new Article("{$rickAndMorty->getTitle()}", "{$rickAndMorty->getDescription()}",$rickAndMorty->getEpisodes()),
+                new Article(
+                    "{$rickAndMorty->getTitle()}",
+                    "{$rickAndMorty->getDescription()}",
+                    $rickAndMorty->getEpisodes()
+                ),
                 new Article("Title2", "Description2"),
                 new Article("Title3", "Description3"),
             ]
@@ -23,11 +27,12 @@ class ArticleController
     public function show():Response
     {
         $article="";
-        if (stripos($_SERVER['REQUEST_URI'],"un/showarticle")){
-            $article=str_replace("/un/showarticle","",$_SERVER['REQUEST_URI']);
+        if (stripos($_SERVER['REQUEST_URI'],"un/articles/showarticle")){
+            $article=str_replace("/un/articles/showarticle","",$_SERVER['REQUEST_URI']);
         }
+        var_dump($article);
                   return new Response("Articles.show",[
-               $this->index()->getData()["articles"][$article]
+               $this->index()->getData()["articles"][0]
             ]);
     }
 }
