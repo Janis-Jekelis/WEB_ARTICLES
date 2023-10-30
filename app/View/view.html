@@ -1,0 +1,4 @@
+<h1 style="text-align: center;"> {{pageTitle}}</h1>
+{% for item in articles %}
+<li><a href=  "{{item.redirect}}" >{{item.title}} {{item.description}}</a></li>
+{% endfor %}

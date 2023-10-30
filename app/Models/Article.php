@@ -1,7 +1,7 @@
 <?php
 declare(strict_types=1);
 
-namespace APP\Models;
+namespace App\Models;
 
 class Article
 {
