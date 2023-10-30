@@ -1,0 +1,41 @@
+<?php
+declare(strict_types=1);
+namespace App;
+class RickAndMorty
+{
+    private string $description;
+    private string $title;
+    private array $episodes;
+    private const API ="https://rickandmortyapi.com/api/episode";
+
+    public function __construct()
+{
+    $this->title="Rick and Morty";
+    $this->episodes=$this->setEpisodes();
+    $this->description="Rick and Morty episode list";
+}
+    public function setEpisodes(): array
+    {
+        $episodes=[];
+       $api=json_decode(file_get_contents(self::API));
+       foreach ($api->results as $episode){
+           $episodes[]=$episode->name;
+       }
+       return $episodes;
+    }
+
+    public function getEpisodes(): array
+    {
+        return $this->episodes;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+}

@@ -41,7 +41,6 @@ switch ($routeInfo[0]) {
         // ... 405 Method Not Allowed
         break;
     case FastRoute\Dispatcher::FOUND:
-      ///  $handler = $routeInfo[1];
         $vars = $routeInfo[2];
         $handler=$routeInfo[1];
         [$class,$method]=[$handler[0],$handler[1]];
@@ -72,10 +71,12 @@ switch ($routeInfo[0]) {
                 echo ($response->getData()[0]->getTitle());
             echo "<br>";
                 echo ($response->getData()[0]->getDescription());
-
-
+                if(($response->getData()[0])->getContent()!=null){
+                    foreach ($response->getData()[0]->getContent() as $content ){
+                        echo $content;
+                        echo "<br>";
+                    }
+                }
         }
-
-
         break;
 }

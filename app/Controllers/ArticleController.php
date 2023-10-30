@@ -5,20 +5,21 @@ namespace App\Controllers;
 
 use App\Models\Article;
 use App\Response;
+use App\RickAndMorty;
 
 class ArticleController
 {
 
     public function index():Response
     {
-       return new Response("Articles.index", [
+       $rickAndMorty= new RickAndMorty();
+               return new Response("Articles.index", [
             "articles" => [
-                new Article("Title1", "Description1"),
+                new Article("{$rickAndMorty->getTitle()}", "{$rickAndMorty->getDescription()}",$rickAndMorty->getEpisodes()),
                 new Article("Title2", "Description2"),
                 new Article("Title3", "Description3"),
             ]
         ]);
-
     }
     public function show():Response
     {
