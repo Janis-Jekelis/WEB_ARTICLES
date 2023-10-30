@@ -6,7 +6,6 @@ class RickAndMorty
     private string $description;
     private string $title;
     private array $episodes;
-    private const API ="https://rickandmortyapi.com/api/episode";
 
     public function __construct()
 {
@@ -17,7 +16,7 @@ class RickAndMorty
     public function setEpisodes(): array
     {
         $episodes=[];
-       $api=json_decode(file_get_contents(self::API));
+       $api=json_decode(file_get_contents($_ENV["API"]));
        foreach ($api->results as $episode){
            $episodes[]=$episode->name;
        }

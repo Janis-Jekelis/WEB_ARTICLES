@@ -2,14 +2,11 @@
 declare(strict_types=1);
 require_once "vendor/autoload.php";
 use Carbon\Carbon;
-
-
-
-
-
-
 $loader = new \Twig\Loader\FilesystemLoader('app/View');
 $twig = new \Twig\Environment($loader);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
+
 
 $dispatcher = FastRoute\simpleDispatcher(function(FastRoute\RouteCollector $r) {
     $r->addRoute('GET',"/un/articles", ["App\Controllers\ArticleController","index"]);
