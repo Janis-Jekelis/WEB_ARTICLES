@@ -1,5 +1,6 @@
 <?php
 declare(strict_types=1);
+
 namespace App\Controllers;
 
 use App\Models\Article;
@@ -9,10 +10,10 @@ use App\RickAndMorty;
 class ArticleController
 {
 
-    public function index():Response
+    public function index(): Response
     {
-       $rickAndMorty= new RickAndMorty();
-               return new Response("Articles.index", [
+        $rickAndMorty = new RickAndMorty();
+        return new Response("Articles.index", [
             "articles" => [
                 new Article(
                     "{$rickAndMorty->getTitle()}",
@@ -24,15 +25,16 @@ class ArticleController
             ]
         ]);
     }
-    public function show():Response
+
+    public function show(): Response
     {
-        $article="";
-        if (stripos($_SERVER['REQUEST_URI'],"un/articles/showarticle")){
-            $article=str_replace("/un/articles/showarticle","",$_SERVER['REQUEST_URI']);
+        $article = "";
+        if (stripos($_SERVER['REQUEST_URI'], "un/articles/showarticle")) {
+            $article = str_replace("/un/articles/showarticle", "", $_SERVER['REQUEST_URI']);
         }
-        var_dump($article);
-                  return new Response("Articles.show",[
-               $this->index()->getData()["articles"][0]
+        return new Response("Articles.show",
+            [
+                $this->index()->getData()["articles"][$article]
             ]);
     }
 }

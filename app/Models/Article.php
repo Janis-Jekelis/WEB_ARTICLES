@@ -9,13 +9,15 @@ class Article
     private string $description;
     private ?array $content;
 
-    public function __construct(string $title, string $description,?array $content=null )
+    public function __construct(string $title, string $description, ?array $content = null)
     {
         $this->title = $title;
         $this->description = $description;
-        if(isset($content)){
-            $this->content=$content;
-        }else {$this->content=null;}
+        if (isset($content)) {
+            $this->content = $content;
+        } else {
+            $this->content = null;
+        }
     }
 
     public function getTitle(): string
